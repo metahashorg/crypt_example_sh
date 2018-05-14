@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 # METAHASH CLI TOOL
 #
 # Usage:
@@ -8,10 +6,7 @@
 # * function: Some function to invoke (i.e 'generate', 'usage', 'sign')
 # * parameter: function parameter (if any)
 
-
-
 scriptname=$0
-
 
 usage () {
     echo "Usage: $scriptname function [parameter]"
@@ -20,8 +15,6 @@ usage () {
     echo "	usage -- display help info"
     exit 1
 }
-
-
 
 generate () {
 echo -n 'Generating private key'
