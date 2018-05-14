@@ -55,6 +55,14 @@ do
           usage
           exit 0
           ;;
+      usage)
+	  usage
+          exit 0
+          ;;
+      generate)
+          generate
+          exit 0
+          ;;
       -*)
           echo "Error: Unknown option: $1" >&2
           usage
