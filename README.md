@@ -5,9 +5,27 @@ This repository contains a script file for Bash, that describes step-by-step gen
 
 Clone the repository by:
 
-
 ```shell
 git clone https://github.com/metahashorg/crypt_example_sh
 ```
 
 ## Run the script
+
+```shell
+./crypt_example.sh generate
+```
+
+## Outputs
+```shell
+Generating private key
+Done!
+Generating Metahash Addressread EC key
+writing EC key
+Your Metahash address is 0x0083c...6b
+```
+
+```shell
+mh.pem - private key file
+mh_addr.pub - public key file
+```
+
