@@ -30,10 +30,10 @@ fi
 echo
 echo -n 'Generating Metahash Address'
 openssl ec -in mh.pem -pubout -outform DER|tail -c 65|xxd -p -c 65 > mh_addr.pub
-sha256hashpub=`cat mh_addr.pub | xxd -r -p | openssl dgst -sha256`
-rmdhash=00`echo -e $sha256hashpub  | xxd -r -p | openssl dgst -rmd160`
-sha256rmdhash=`echo -e $rmdhash | xxd -r -p | openssl dgst -sha256`
-sha256hash4=`echo -e  $sha256rmdhash | xxd -r -p | openssl dgst -sha256`
+sha256hashpub=`cat mh_addr.pub | xxd -r -p | openssl dgst -sha256 | cut -f 2 -d ' '`
+rmdhash=00`echo -e $sha256hashpub  | xxd -r -p | openssl dgst -rmd160 | cut -f 2 -d ' '`
+sha256rmdhash=`echo -e $rmdhash | xxd -r -p | openssl dgst -sha256 | cut -f 2 -d ' '`
+sha256hash4=`echo -e  $sha256rmdhash | xxd -r -p | openssl dgst -sha256 | cut -f 2 -d ' '`
 hash4=`echo -e $sha256hash4|head -c 4`
 echo "Your Metahash address is 0x$rmdhash$hash4"
 }
