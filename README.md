@@ -12,20 +12,28 @@ git clone https://github.com/metahashorg/crypt_example_sh
 ## Run the script
 
 ```shell
-./crypt_example.sh generate
+./crypt_example.sh function [parameter]
+
+List of functions:
+    generate  - generate MetaHash address with OpenSSL CLI Tool
+    usage  - display help info
 ```
 
 ## Outputs
 ```shell
+mh.pem - private key file
+mh_addr.pub - public key file
+```
+### Output Example
+```shell
+./crypt_example.sh generate
+
 Generating private key
 Done!
 Generating Metahash Addressread EC key
 writing EC key
 Your Metahash address is 0x0083c...6b
-```
 
-```shell
-mh.pem - private key file
-mh_addr.pub - public key file
+and two files with private and public keys: ./mh.pem ./mh_addr.pub
 ```
 
