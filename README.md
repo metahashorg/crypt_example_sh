@@ -15,8 +15,10 @@ git clone https://github.com/metahashorg/crypt_example_sh
 ./crypt_example.sh function [parameter]
 
 List of functions:
-    generate  - generate MetaHash address with OpenSSL CLI Tool
-    usage  - display help info
+
+	generate  - generate MetaHash address with OpenSSL CLI Tool
+
+	usage  - display help info
 	
 	fetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(test|main) and --address=metahash_address
 
@@ -34,7 +36,7 @@ List of functions:
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
-	Optional parameters:
+		Optional parameters:
  	 		--nonce=VALUE
 
 	send_transaction -- send a transaction to server.
