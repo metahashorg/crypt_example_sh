@@ -56,14 +56,13 @@ mh.pub - public key file
 ```
 ### Output Example
 ```shell
-./crypt_example.sh generate
+#./crypt_example.sh generate
 
 Done! Your private key saved as mh.pem, public as mh.pub in current directory
 
 Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 
 #./crypt_example.sh fetch-balance --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
-
 {
     "id": 1,
     "result": {
@@ -75,7 +74,7 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
         "block_number": 0,
         "currentBlock": 1346
     }
-
+}
 
 # ./crypt_example.sh fetch-history --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 {
@@ -109,6 +108,6 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
             "timestamp": 0
         }
     }
-
+}
 ```
 
