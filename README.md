@@ -20,11 +20,11 @@ List of functions:
 
 	usage  - display help info
 	
-	fetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(test|main) and --address=metahash_address
+	fetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address
 
-	fetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(test|main) and --address=metahash_address
+	fetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address
 
-	get-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(test|main) and --tx_hash=transacation_hash
+	get-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main) and --tx_hash=transacation_hash
 
 	get-address -- get your own metahash address. --net=NETWORK(dev|main) and --pubkey=/path/to/public_key are mandatory
 
