@@ -144,7 +144,6 @@ prepare_transaction () {
 
 
   signed=`cat $signed_temp|xxd -p|tr -d '\n'`
-#  rm $to_sign_temp $signed_temp
 
   json='{
       "jsonrpc": "2.0",
