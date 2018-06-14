@@ -109,5 +109,12 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
         }
     }
 }
+
+
+#./crypt_example.sh  prepare_transaction --net=dev --pubkey=./mh.pub --send_to=0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628 --amount=6666  --privkey=./mh.pem
+{ "jsonrpc": "2.0", "method": "mhc_send", "params": { "to": "0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628", "value": "6666", "fee": "", "nonce": "1", "data": "", "pubkey": "3056301006072a8648ce3d020106052b8104000a03420004dd6e2237ed7158995bb8247235b68b5f1e86efafd9e64a72dca8695782b9ff4cedf68da23f8865ec01f12b4bfe59157737baf339cc0bf4e1a00781149db1ac17", "sign": "304502210080fe3ab30adf14ef38ce63e8cb871cbab9834b3c4c3edc15aeef44cb00540a6f02206492179cc18d605e038336be10f7c0af83a2ca1437a1f0fdbce28a7aa01e6aef" } }
+
+
+
 ```
 
