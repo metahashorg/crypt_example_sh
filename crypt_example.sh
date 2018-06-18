@@ -56,7 +56,7 @@ get_address_from_pub_key () {
                 pubkey_file=mh.pub
         fi
 
-        mh_addr=`mktemp`
+        mh_addr=`mktemp /tmp/mh.XXXXX`
 
         openssl ec -pubin -inform PEM -in $pubkey_file -outform DER 2>/dev/null |tail -c 65|xxd -p -c 65 >$mh_addr
         sha256hashpub=`cat $mh_addr | xxd -r -p | openssl dgst -sha256 2>/dev/null| cut -f 2 -d ' '`
@@ -77,7 +77,17 @@ fetch-balance () {
       exit 2
   fi
 
-  curl -s -X POST --data '{"id":1,"params":{"address": "'$address'"},"pretty":true}' $torrent_node:$node_port/fetch-balance
+  res=`curl -s -X POST --data '{"id":1,"params":{"address": "'$address'"},"pretty":true}' $torrent_node:$node_port/fetch-balance`
+  
+  is_json=`echo $res | grep -q '^{.*result.*}$' ; echo $?`
+
+  if [  $is_json -ne 0 ]
+    then
+        echo 'not valid json received from server'
+     else
+        echo $res
+  fi
+
 
 }
 
@@ -92,7 +102,17 @@ fetch-history () {
   fi
 
 
-  curl -s -X POST --data '{"id":1,"params":{"address": "'$address'"}, "pretty":true}' $torrent_node:$node_port/fetch-history
+  res=`curl -s -X POST --data '{"id":1,"params":{"address": "'$address'"}, "pretty":true}' $torrent_node:$node_port/fetch-history`
+
+  is_json=`echo $res | grep -q '^{.*result.*}$' ; echo $?`
+
+  if [  $is_json -ne 0 ]
+    then
+        echo 'not valid json received from server'
+     else
+        echo $res
+  fi
+
 
 }
 
@@ -106,7 +126,19 @@ get-tx () {
   fi
 
 
-  curl -s -X POST --data '{"id":1,"params":{"hash": "'$tx_hash'"},"pretty":true}' $torrent_node:$node_port/get-tx
+  res=`curl -s -X POST --data '{"id":1,"params":{"hash": "'$tx_hash'"},"pretty":true}' $torrent_node:$node_port/get-tx`
+  
+  is_json=`echo $res | grep -q '^{.*result.*}$' ; echo $?`
+
+  if [  $is_json -ne 0 ]
+    then
+        echo 'not valid json received from server'
+     else
+        echo $res
+  fi
+
+
+
 
 }
 
@@ -165,8 +197,17 @@ prepare_transaction () {
 send_transaction () {
   prepare_transaction
   echo $json
-  curl -s -X POST --data "$json" $proxy_node:$proxy_port
-  exit 0
+
+  res=`curl -s -X POST --data "$json" $proxy_node:$proxy_port`
+
+  is_json=`echo $res | grep -q '^{.*result.*}$' ; echo $?`
+
+  if [  $is_json -ne 0 ]
+    then
+        echo 'not valid json received from server'
+     else
+        echo $res
+  fi
 
 }
 
