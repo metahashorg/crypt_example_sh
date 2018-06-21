@@ -185,17 +185,17 @@ prepare_transaction () {
     if [ -z $bin_value ]
       then
         res=00
-        
+
       elif [ $bin_value -lt 250 ]
         then
           hex=`printf "%02x" $bin_value`
           res=$hex
-      elif [ $bin_value -lt 65535 ]
+      elif [ $bin_value -le 65535 ]
         then
           hex=`printf "%.4x" $bin_value`
           hex_to_endian $hex
           res="fa$endian"
-      elif [ $bin_value -gt 65535 ] && [ $bin_value -lt 4294967295 ]
+      elif [ $bin_value -gt 65535 ] && [ $bin_value -le 4294967295 ]
         then
           hex=`printf "%.8x" $bin_value `
           hex_to_endian $hex
