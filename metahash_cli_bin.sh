@@ -200,7 +200,12 @@ prepare_transaction () {
           hex=`printf "%.8x" $bin_value `
           hex_to_endian $hex
           res="fb$endian"
-       fi
+      else
+          hex=`printf "%.16x" $bin_value `
+          hex_to_endian $hex
+          res="fb$endian"
+       
+      fi
 
       bin_exp=$bin_exp" $bin->$res "
       bin_data=$bin_data"$res"
