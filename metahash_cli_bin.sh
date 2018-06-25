@@ -203,7 +203,7 @@ prepare_transaction () {
       else
           hex=`printf "%.16x" $bin_value `
           hex_to_endian $hex
-          res="fb$endian"
+          res="fc$endian"
        
       fi
 
