@@ -19,6 +19,8 @@ usage () {
     echo -e " \nfetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address"
     echo -e " \nget-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main) and --tx_hash=transacation_hash"
     echo -e " \nget-address -- get your own metahash address. --net=NETWORK(dev|main) and --pubkey=/path/to/public_key are mandatory"
+    echo -e " \ngen-transaction -- gives you binary of transaction.\n\tMandatory parameters:"
+    echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE --fee=VALUE"
     echo -e " \nprepare_transaction -- gives you json of transaction.\n\tMandatory parameters:"
     echo -e " \t --net=NETWORK(dev|main)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
     echo -e "\tOptional parameters: \n \t --nonce=VALUE"
@@ -142,24 +144,7 @@ get-tx () {
 
 }
 
-
-prepare_transaction () {
-  get_config
-  fee=''
-
-  if [ -z $nonce ]
-   then
-    address=$metahash_address
-    count_send=`fetch-balance |grep -o '"count_spent":[0-9]*,i\|"count_spent": [0-9]*,'|grep -o [0-9]*`
-    nonce=$((count_send+1))
-  fi
-
-  if [ -z $privkey ] || [ ! -f $privkey ]
-  then
-  echo "private key is mandatory option! please specify --privkey=/path/to/private_key "
-  exit 2
-  fi
-
+gen_transaction() {
   function hex_to_endian () {
 
     endian=''
@@ -171,9 +156,6 @@ prepare_transaction () {
       do
         endian=$endian"${array[i]}"
       done
-
-
-
   }
 
 
@@ -210,6 +192,26 @@ prepare_transaction () {
 
   bin_to=`echo $send_to|sed 's/0x//'`
   string_to_sign_hex=$bin_to$bin_data
+}
+
+prepare_transaction () {
+  get_config
+
+  if [ -z $nonce ]
+   then
+    address=$metahash_address
+    count_send=`fetch-balance |grep -o '"count_spent":[0-9]*,i\|"count_spent": [0-9]*,'|grep -o [0-9]*`
+    nonce=$((count_send+1))
+  fi
+
+  if [ -z $privkey ] || [ ! -f $privkey ]
+  then
+  echo "private key is mandatory option! please specify --privkey=/path/to/private_key "
+  exit 2
+  fi
+
+  gen_transaction
+
   to_sign_temp='/tmp/to_sign'
   signed_temp='/tmp/signed'
   echo $bin_to$bin_data|xxd -r -ps >$to_sign_temp
@@ -312,6 +314,9 @@ do
         --nonce)
           nonce=$value
           ;;
+        --fee)
+          fee=$value
+          ;;
        esac
 
 done
@@ -362,6 +367,13 @@ do
           ;;
       get-tx)
           get-tx
+          exit 0
+          ;;
+      gen-tx)
+          net=dev
+          get_config
+          gen_transaction
+          echo $string_to_sign_hex
           exit 0
           ;;
       prepare_transaction)
