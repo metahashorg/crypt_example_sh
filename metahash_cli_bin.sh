@@ -2,7 +2,7 @@
 # METAHASH CLI TOOL with binary transactions
 #
 # Usage:
-#  $ ./crypt_example.sh function [parameter]
+#  $ ./metahash_cli_bin.sh function [parameter]
 # * function: Some function to invoke (i.e 'generate', 'usage', 'sign')
 # * parameter: function parameter (if any)
 
