@@ -1,7 +1,9 @@
 # crypt_example_sh
 This repository contains a script file for Bash, that describes step-by-step generation of the Metahash address, creating transactions and fetching balance history and information. For more details about Metahash address generation, please read the [article](https://support.metahash.org/hc/en-us/articles/360002712193-Getting-started-with-Metahash-network#h_683619682421524476003219).
 
-<b>Only transactions in binary format are currently supported. Transactions in text format are deprecated.</b>
+<b>Only transactions in binary format are currently supported (metahash_cli_bin.sh). 
+
+Transactions in text format are deprecated (crypt_example.sh).</b>
 
 ## Get the source code
 
