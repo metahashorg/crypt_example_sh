@@ -12,7 +12,7 @@ git clone https://github.com/metahashorg/crypt_example_sh
 ## Run the script
 
 ```shell
-./crypt_example.sh function [parameter]
+./metahash_cli_bin.sh function [parameter]
 
 List of functions:
 
@@ -56,13 +56,13 @@ mh.pub - public key file
 ```
 ### Output Example
 ```shell
-#./crypt_example.sh generate
+#./metahash_cli_bin.sh generate
 
 Done! Your private key saved as mh.pem, public as mh.pub in current directory
 
 Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 
-#./crypt_example.sh fetch-balance --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
+#./metahash_cli fetch-balance --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 {
     "id": 1,
     "result": {
@@ -76,7 +76,7 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
     }
 }
 
-# ./crypt_example.sh fetch-history --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
+# ./metahash_cli fetch-history --net=dev --address=0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 {
     "id": 1,
     "result": [
@@ -91,12 +91,12 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 }
 
 
-# ./crypt_example.sh  send_transaction --net=dev --pubkey=./mh.pub --send_to=0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628 --amount=6666  --privkey=./mh.pem
+# ./metahash_cli  send_transaction --net=dev --pubkey=./mh.pub --send_to=0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628 --amount=6666  --privkey=./mh.pem
 { "jsonrpc": "2.0", "method": "mhc_send", "params": { "to": "0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628", "value": "6666", "fee": "", "nonce": "1", "data": "", "pubkey": "3056301006072a8648ce3d020106052b8104000a034200041128541b832e6d6687249f9189737a568a4ce6df01dc7cdaa28f5ee7c7ae64cc227b50ed2408791584ffea585612c804f9a789850157e94e5dddaf12ee06fcc8", "sign": "30460221009171303840866375b4ca2743302dfa865250a7aede7b719e91fbaa358299947802210097ee0462adc2f2e5bb70d4e0b8545c8d860b29a472be24e4ea4d6c9521baa3dc" } }
 {"result":"ok","params":"1d7f80e13ef2e14a848cbf0712436c8263fedf6cf23a29cfae70c00f38217951"}
 
 
-#./crypt_example.sh get-tx --net=dev --tx_hash=6b7657f9dafc629466bf7f40f1caa5eba8a75eff132b51e86bb791c9e765fef2
+#./metahash_cli get-tx --net=dev --tx_hash=6b7657f9dafc629466bf7f40f1caa5eba8a75eff132b51e86bb791c9e765fef2
 {
     "id": 1,
     "result": {
@@ -111,7 +111,7 @@ Your metahash address is 0x0055b025b3f8464f29082871618379a5062f10b88021f00e69
 }
 
 
-#./crypt_example.sh  prepare_transaction --net=dev --pubkey=./mh.pub --send_to=0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628 --amount=6666  --privkey=./mh.pem
+#./metahash_cli  prepare_transaction --net=dev --pubkey=./mh.pub --send_to=0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628 --amount=6666  --privkey=./mh.pem
 { "jsonrpc": "2.0", "method": "mhc_send", "params": { "to": "0x0074bcb34e85b717dc3bf356001c7e733209572c9eaf138628", "value": "6666", "fee": "", "nonce": "1", "data": "", "pubkey": "3056301006072a8648ce3d020106052b8104000a03420004dd6e2237ed7158995bb8247235b68b5f1e86efafd9e64a72dca8695782b9ff4cedf68da23f8865ec01f12b4bfe59157737baf339cc0bf4e1a00781149db1ac17", "sign": "304502210080fe3ab30adf14ef38ce63e8cb871cbab9834b3c4c3edc15aeef44cb00540a6f02206492179cc18d605e038336be10f7c0af83a2ca1437a1f0fdbce28a7aa01e6aef" } }
 
 
