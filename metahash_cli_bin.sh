@@ -201,7 +201,7 @@ if [ -z $data ]
   then 
     string_to_sign_hex=$bin_to$bin_data
   else
-    string_to_sign_hex=$bin_to$bin_data$data
+    string_to_sign_hex=$bin_to$bin_data$dataHex
   fi
 
 echo $string_to_sign_hex
@@ -229,7 +229,7 @@ prepare_transaction () {
 
   to_sign_temp='/tmp/to_sign'
   signed_temp='/tmp/signed'
-  echo $bin_to$bin_data|xxd -r -ps >$to_sign_temp
+  echo $string_to_sign_hex|xxd -r -ps >$to_sign_temp
 
   to_sign_temp='/tmp/to_sign'
   signed_temp='/tmp/signed'
@@ -255,7 +255,7 @@ prepare_transaction () {
         "value": "'$amount'",
         "fee": "'$fee'",
         "nonce": "'$nonce'",
-        "data": "'$data'",
+        "data": "'$dataHex'",
         "pubkey": "'$pubkey_der_16'",
         "sign": "'$signed'"
     }
