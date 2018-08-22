@@ -159,7 +159,7 @@ gen_transaction() {
   }
 
 
-  for bin in amount fee nonce data
+  for bin in amount fee nonce
   do
 
     bin_value=${!bin}
@@ -196,7 +196,14 @@ gen_transaction() {
 
 
   bin_to=`echo $send_to|sed 's/0x//'`
-  string_to_sign_hex=$bin_to$bin_data
+
+if [ -z $data ]
+  then 
+    string_to_sign_hex=$bin_to$bin_data
+  else
+    string_to_sign_hex=$bin_to$bin_data$sizeOfData$data
+  fi
+
 }
 
 prepare_transaction () {
@@ -321,6 +328,11 @@ do
           ;;
         --fee)
           fee=$value
+          ;;
+        --dataHex)
+          dataHex=$value
+          data=`echo $dataHex|xxd -r -p`
+          sizeOfData=`echo $data|wc -c`;
           ;;
        esac
 
