@@ -159,7 +159,7 @@ gen_transaction() {
   }
 
 
-  for bin in amount fee nonce
+  for bin in amount fee nonce sizeOfData
   do
 
     bin_value=${!bin}
@@ -201,8 +201,11 @@ if [ -z $data ]
   then 
     string_to_sign_hex=$bin_to$bin_data
   else
-    string_to_sign_hex=$bin_to$bin_data$sizeOfData$data
+    string_to_sign_hex=$bin_to$bin_data$data
   fi
+
+echo $string_to_sign_hex
+
 
 }
 
@@ -332,7 +335,7 @@ do
         --dataHex)
           dataHex=$value
           data=`echo $dataHex|xxd -r -p`
-          sizeOfData=`echo $data|wc -c`;
+          sizeOfData=`echo ${#data}`;
           ;;
        esac
 
