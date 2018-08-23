@@ -204,7 +204,7 @@ if [ -z $data ]
     string_to_sign_hex=$bin_to$bin_data$dataHex
   fi
 
-echo $string_to_sign_hex
+#echo $string_to_sign_hex
 
 
 }
