@@ -15,17 +15,17 @@ usage () {
     echo -e "List of functions:"
     echo -e " \ngenerate -- generate MetaHash address with OpenSSL CLI Tool"
     echo -e " \nusage -- display help info"
-    echo -e " \nfetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address"
-    echo -e " \nfetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address"
-    echo -e " \nget-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main) and --tx_hash=transacation_hash"
-    echo -e " \nget-address -- get your own metahash address. --net=NETWORK(dev|main) and --pubkey=/path/to/public_key are mandatory"
+    echo -e " \nfetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --address=metahash_address"
+    echo -e " \nfetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main|test|test) and --address=metahash_address"
+    echo -e " \nget-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --tx_hash=transacation_hash"
+    echo -e " \nget-address -- get your own metahash address. --net=NETWORK(dev|main|test) and --pubkey=/path/to/public_key are mandatory"
     echo -e " \ngen-transaction -- gives you binary of transaction.\n\tMandatory parameters:"
     echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE --fee=VALUE"
     echo -e " \nprepare_transaction -- gives you json of transaction.\n\tMandatory parameters:"
-    echo -e " \t --net=NETWORK(dev|main)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
+    echo -e " \t --net=NETWORK(dev|main|test)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
     echo -e "\tOptional parameters: \n \t --nonce=VALUE \n \t --dataHex=DATA_in_HEX"
     echo -e "send_transaction -- send a transaction to server.\n\tMandatory parameters:"
-    echo -e " \t --net=NETWORK(dev|main)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
+    echo -e " \t --net=NETWORK(dev|main|test)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
 
     exit 1
 }
