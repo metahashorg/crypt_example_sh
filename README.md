@@ -36,9 +36,9 @@ List of functions:
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
-			 --dataHex=DATA_in_HEX
 		Optional parameters:
- 	 		--nonce=VALUE
+ 	 		 --nonce=VALUE
+			 --dataHex=DATA_in_HEX
 
 	send_transaction -- send a transaction to server.
 	
@@ -48,6 +48,7 @@ List of functions:
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
+		Optional parameters:
 			 --dataHex=DATA_in_HEX
 ```
 
