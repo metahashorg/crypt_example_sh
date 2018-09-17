@@ -36,6 +36,7 @@ List of functions:
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
+			 --dataHex=DATA_in_HEX
 		Optional parameters:
  	 		--nonce=VALUE
 
@@ -47,6 +48,7 @@ List of functions:
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
+			 --dataHex=DATA_in_HEX
 ```
 
 ## Outputs
