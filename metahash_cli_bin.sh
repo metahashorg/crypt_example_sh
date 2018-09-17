@@ -20,7 +20,7 @@ usage () {
     echo -e " \nget-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --tx_hash=transacation_hash"
     echo -e " \nget-address -- get your own metahash address. --net=NETWORK(dev|main|test) and --pubkey=/path/to/public_key are mandatory"
     echo -e " \ngen-transaction -- gives you binary of transaction.\n\tMandatory parameters:"
-    echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE --fee=VALUE"
+    echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE"
     echo -e " \nprepare_transaction -- gives you json of transaction.\n\tMandatory parameters:"
     echo -e " \t --net=NETWORK(dev|main|test)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
     echo -e "\tOptional parameters: \n \t --nonce=VALUE \n \t --dataHex=DATA_in_HEX"
@@ -329,13 +329,11 @@ do
         --nonce)
           nonce=$value
           ;;
-        --fee)
-          fee=$value
-          ;;
         --dataHex)
           dataHex=$value
           data=`echo $dataHex|xxd -r -p`
           sizeOfData=`echo ${#data}`;
+          fee=$sizeOfData
           ;;
        esac
 
