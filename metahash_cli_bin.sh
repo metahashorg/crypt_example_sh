@@ -23,7 +23,7 @@ usage () {
     echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE --fee=VALUE"
     echo -e " \nprepare_transaction -- gives you json of transaction.\n\tMandatory parameters:"
     echo -e " \t --net=NETWORK(dev|main)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
-    echo -e "\tOptional parameters: \n \t --nonce=VALUE"
+    echo -e "\tOptional parameters: \n \t --nonce=VALUE \n \t --dataHex=DATA_in_HEX"
     echo -e "send_transaction -- send a transaction to server.\n\tMandatory parameters:"
     echo -e " \t --net=NETWORK(dev|main)\n \t --pubkey=/path/to/public_key\n \t --privkey=/path/to/private_key\n \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS"
 
