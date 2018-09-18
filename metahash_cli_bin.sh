@@ -332,7 +332,9 @@ do
         --dataHex)
           dataHex=$value
           data=`echo $dataHex|xxd -r -p`
-          sizeOfData=`echo ${#data}`;
+          #sizeOfData=`echo ${#data}`;
+          sizeOfData=`echo $data|awk '{print length}'`
+        
           fee=$sizeOfData
           ;;
        esac
