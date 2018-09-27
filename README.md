@@ -20,36 +20,36 @@ List of functions:
 
 	usage  - display help info
 	
-	fetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address
+	fetch-balance -- get balance information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --address=metahash_address
 
-	fetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main) and --address=metahash_address
+	fetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main|test) and --address=metahash_address
 
-	get-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main) and --tx_hash=transacation_hash
+	get-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --tx_hash=transacation_hash
 
-	get-address -- get your own metahash address. --net=NETWORK(dev|main) and --pubkey=/path/to/public_key are mandatory
+	get-address -- get your own metahash address. --net=NETWORK(dev|main|test) and --pubkey=/path/to/public_key are mandatory
 
 	prepare_transaction -- gives you json of transaction.
 	
 		Mandatory parameters:
- 	 		 --net=NETWORK(dev|main)
+ 	 		 --net=NETWORK(dev|main|test)
 		 	 --pubkey=/path/to/public_key
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
 		Optional parameters:
  	 		 --nonce=VALUE
-			 --dataHex=DATA_in_HEX
+			 --dataHex=DATA_in_HEX (only test net)
 
 	send_transaction -- send a transaction to server.
 	
 		Mandatory parameters:
-		 	 --net=NETWORK(dev|main)
+		 	 --net=NETWORK(dev|main|test)
 		 	 --pubkey=/path/to/public_key
 		 	 --privkey=/path/to/private_key
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
 		Optional parameters:
-			 --dataHex=DATA_in_HEX
+			 --dataHex=DATA_in_HEX (only test net)
 ```
 
 ## Outputs
