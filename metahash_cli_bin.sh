@@ -215,7 +215,7 @@ prepare_transaction () {
   if [ -z $nonce ]
    then
     address=$metahash_address
-    count_send=`fetch-balance |grep -o '"count_spent":[0-9]*,i\|"count_spent": [0-9]*,'|grep -o [0-9]*`
+    count_send=`fetch-balance |grep -o '"count_spent":[0-9]*,i\|"count_spent": [0-9]*,'|grep -o '[0-9]*'`
     nonce=$((count_send+1))
   fi
 
