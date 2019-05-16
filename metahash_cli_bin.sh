@@ -347,8 +347,8 @@ if [ -z $net ]
       echo "network is mandatory parameter, please specify"
       exit 2
  else
-      proxy_node=`dig proxy.net-$net.metahash.org +short +tcp|head -n1`
-      torrent_node=`dig tor.net-$net.metahash.org +short +tcp|head -n1`
+      proxy_node=`dig proxy.net-$net.metahashnetwork.com +short +tcp|head -n1`
+      torrent_node=`dig tor.net-$net.metahashnetwork.com +short +tcp|head -n1`
 fi
 
 node_port=5795
