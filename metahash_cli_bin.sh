@@ -158,6 +158,12 @@ gen_transaction() {
       done
   }
 
+if [ ! $fee ]
+then
+    fee=$sizeOfData
+fi
+
+
 
   for bin in amount fee nonce sizeOfData
   do
@@ -205,6 +211,7 @@ if [ -z $data ]
   fi
 
 #echo $string_to_sign_hex
+
 
 
 }
@@ -335,8 +342,9 @@ do
           data=`echo $dataHex|xxd -r -p`
           #sizeOfData=`echo ${#data}`;
           sizeOfData=`echo $data|awk '{print length}'`
-        
-          fee=$sizeOfData
+          ;;
+        --fee)
+            fee=$value
           ;;
        esac
 
