@@ -31,17 +31,12 @@ usage () {
     exit 1
 }
 
-get_pub_key_and_address_from_private_key () {
+get_pub_key_from_private_key () {
 
     pkey=$1
-    openssl ec -in $pkey -pubout -out /tmp/mh-temp.pub 2>/dev/null
-    echo Public key: 
-    cat /tmp/mh-temp.pub 
-    pubkey_file=/tmp/mh-temp.pub
-    get_address_from_pub_key
-    echo Metahash address: $metahash_address
-
-    rm /tmp/mh-temp.pub
+    temp_pub_key=`mktemp`
+    openssl ec -in $pkey -pubout -out $temp_pub_key 2>/dev/null
+    pubkey_file=$temp_pub_key
 
 }
 
@@ -208,7 +203,7 @@ fi
           hex=`printf "%.16x" $bin_value `
           hex_to_endian $hex
           res="fc$endian"
-       
+
       fi
 
       bin_exp=$bin_exp" $bin->$res "
@@ -220,7 +215,7 @@ fi
   bin_to=`echo $send_to|sed 's/0x//'`
 
 if [ -z $data ]
-  then 
+  then
     string_to_sign_hex=$bin_to$bin_data
   else
     string_to_sign_hex=$bin_to$bin_data$dataHex
@@ -307,6 +302,8 @@ send_transaction () {
 
 get_config () {
 
+nopubkey=0
+
 for arg in "${vars[@]}"
 do
 
@@ -329,18 +326,23 @@ do
               pubkey_file=$value
               pubkey=`cat $value`
               get_address_from_pub_key
-      else
-              echo no public key file $value found
-              exit 2
-          fi
+        nopubkey=1
+            fi
           ;;
         --privkey)
           if [ -f $value ]
             then
               privkey=$value
+              if [ $nopubkey -eq 0 ]
+              then
+                get_pub_key_from_private_key $privkey
+                pubkey_file=$temp_pub_key
+    pubkey=`cat $temp_pub_key`
+                get_address_from_pub_key
+              fi
             else
               echo no private key file $value found
-    exit 2
+              exit 2
           fi
           ;;
 
