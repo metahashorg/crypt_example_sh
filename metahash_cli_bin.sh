@@ -19,6 +19,7 @@ usage () {
     echo -e " \nfetch-history -- get history for address. Mandatory parameters are: --net=NETWORK(dev|main|test|test) and --address=metahash_address"
     echo -e " \nget-tx -- get transaction information. Mandatory parameters are: --net=NETWORK(dev|main|test) and --tx_hash=transacation_hash"
     echo -e " \nget-address -- get your own metahash address. --net=NETWORK(dev|main|test) and --pubkey=/path/to/public_key are mandatory"
+    echo -e " \nget-address-from-private-key get your own metahash address and public key from private key file. "
     echo -e " \ngen-transaction -- gives you binary of transaction.\n\tMandatory parameters:"
     echo -e " \t --amount=AMOUNT_TO_SEND,\n \t --send_to=RECEPIENT_ADDRESS --nonce=VALUE"
     echo -e " \nprepare_transaction -- gives you json of transaction.\n\tMandatory parameters:"
@@ -29,6 +30,21 @@ usage () {
 
     exit 1
 }
+
+get_pub_key_and_address_from_private_key () {
+
+    pkey=$1
+    openssl ec -in $pkey -pubout -out /tmp/mh-temp.pub 2>/dev/null
+    echo Public key: 
+    cat /tmp/mh-temp.pub 
+    pubkey_file=/tmp/mh-temp.pub
+    get_address_from_pub_key
+    echo Metahash address: $metahash_address
+
+    rm /tmp/mh-temp.pub
+
+}
+
 
 generate () {
 openssl ecparam -genkey -name secp256k1 -out mh.pem 2>/dev/null
@@ -381,11 +397,15 @@ do
           exit 0
           ;;
       get-address)
-    get_config
+        get_config
         get_address_from_pub_key
-    echo "Your Metahash address is $metahash_address"
-    exit 0
-    ;;
+        echo "Your Metahash address is $metahash_address"
+        exit 0
+        ;;
+      get-address-from-private-key)
+        get_pub_key_and_address_from_private_key $2
+        exit 0
+        ;;
       fetch-history)
           fetch-history
           exit 0
