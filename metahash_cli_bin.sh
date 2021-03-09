@@ -31,6 +31,16 @@ usage () {
     exit 1
 }
 
+
+function hex_key_to_pem () {
+
+    key_hex=$1
+    keyname=$2
+    echo $key_hex |xxd -p -r|openssl ec -inform DER >$keyname.priv.pem 2>/dev/null
+        openssl ec -in $keyname.priv.pem -pubout -out $keyname.pub.pem 2>/dev/null
+
+}
+
 get_pub_key_from_private_key () {
 
     pkey=$1
@@ -326,7 +336,7 @@ do
               pubkey_file=$value
               pubkey=`cat $value`
               get_address_from_pub_key
-        nopubkey=1
+              nopubkey=1
             fi
           ;;
         --privkey)
@@ -337,13 +347,25 @@ do
               then
                 get_pub_key_from_private_key $privkey
                 pubkey_file=$temp_pub_key
-    pubkey=`cat $temp_pub_key`
+                pubkey=`cat $temp_pub_key`
                 get_address_from_pub_key
               fi
-            else
-              echo no private key file $value found
-              exit 2
           fi
+	      if [[ $value =~ ^30* ]]
+		then
+		  echo $value >/tmp/priv_key_hex
+		  hex_key_to_pem $value /tmp/priv_key_from_hex
+		  privkey=/tmp/priv_key_from_hex.priv.pem
+		  pubkey_file=/tmp/priv_key_from_hex.pub.pem
+		  pubkey=`cat /tmp/priv_key_from_hex.pub.pem`
+		  get_address_from_pub_key
+	      fi
+	      if [ ! -f $value ] && [[ ! $value =~ ^30* ]]
+		then
+              		echo no private key file $value found
+              		exit 2
+	      fi
+
           ;;
 
         --send_to)
