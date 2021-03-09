@@ -32,8 +32,8 @@ List of functions:
 	
 		Mandatory parameters:
  	 		 --net=NETWORK(dev|main|test)
-		 	 --pubkey=/path/to/public_key
-		 	 --privkey=/path/to/private_key
+		 	 --pubkey=/path/to/public_key (optional)
+		 	 --privkey=/path/to/private_key or pass directly your private key in hex format, ie --privkey=309010101021041....
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
 		Optional parameters:
@@ -44,8 +44,8 @@ List of functions:
 	
 		Mandatory parameters:
 		 	 --net=NETWORK(dev|main|test)
-		 	 --pubkey=/path/to/public_key
-		 	 --privkey=/path/to/private_key
+		 	 --pubkey=/path/to/public_key (optional)
+		 	 --privkey=/path/to/private_key  or pass directly your private key in hex format, ie --privkey=309010101021041....
 		 	 --amount=AMOUNT_TO_SEND,
 		 	 --send_to=RECEPIENT_ADDRESS
 		Optional parameters:
