@@ -351,8 +351,9 @@ do
                 get_address_from_pub_key
               fi
           fi
-	      if [[ $value =~ ^30* ]]
+	      if [[ $value =~ ^30* ]] || [[ $value =~ ^0x30* ]]
 		then
+      value=`echo $value|sed 's/^0x//'`
 		  echo $value >/tmp/priv_key_hex
 		  hex_key_to_pem $value /tmp/priv_key_from_hex
 		  privkey=/tmp/priv_key_from_hex.priv.pem
